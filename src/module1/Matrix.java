@@ -38,6 +38,7 @@ public class Matrix {
 
     public void showMatrix() {
 
+        System.out.println("The matrix is: ");
         for (int i = 0; i < this.matrix.length; i++) {
             for (int j = 0; j < this.matrix[i].length; j++) {
                 System.out.print(this.matrix[i][j]+ " ");
