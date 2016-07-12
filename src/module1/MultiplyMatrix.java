@@ -1,8 +1,5 @@
 package module1;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
 public class MultiplyMatrix {
 
     public static void main(String[] args) throws Exception {
@@ -10,63 +7,33 @@ public class MultiplyMatrix {
         System.out.println("Define matrix sizes");
 
         System.out.println("Matrix 1");
-        int[][] matrix1 = createMatrix();
-        showMatrix(matrix1);
+        Matrix matrix1 = new Matrix();
+        matrix1.showMatrix();
 
         System.out.println("Matrix 2");
-        int[][] matrix2 = createMatrix();
-        showMatrix(matrix2);
+        Matrix matrix2 = new Matrix();
+        matrix2.showMatrix();
 
-        multiplyMatrix(matrix1,matrix2);
-
+        multiplyMatrix(matrix1, matrix2);
     }
 
-    public static int[][] createMatrix() throws Exception {
+    private static void multiplyMatrix(Matrix matrix1, Matrix matrix2) {
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.print("x = ");
-        int x = Integer.parseInt(reader.readLine());
-        System.out.print("y = ");
-        int y = Integer.parseInt(reader.readLine());
-
-        int[][] matrix = new int[x][y];
-
-        for (int i = 0; i < x; i++) {
-            for (int j = 0; j < y; j++) {
-                matrix[i][j] = (int)(10 * Math.random());
-            }
-        }
-        return matrix;
-    }
-
-    private static void showMatrix(int[][] matrix) {
-
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                System.out.print(matrix[i][j]+ " ");
-            }
-            System.out.println();
-        }
-
-    }
-
-    private static void multiplyMatrix(int[][] matrix1, int[][] matrix2) {
-
-        int[][] matrix3 = new int[matrix1.length][matrix2[1].length];
+        Matrix matrix3 = new Matrix(matrix1.n, matrix2.m);
         int sum;
 
-        if (matrix1[0].length == matrix2.length) {
-            for (int i = 0; i < matrix1.length; i++) {
-                for (int j = 0; j < matrix2[0].length; j++) {
+        if (matrix1.m == matrix2.n) {
+            for (int i = 0; i < matrix1.n; i++) {
+                for (int j = 0; j < matrix2.m; j++) {
                     sum = 0;
-                    for (int m = 0; m < matrix1[0].length; m++) {
-                        sum += matrix1[i][m] * matrix2[m][j];
+                    for (int m = 0; m < matrix1.m; m++) {
+                        sum += matrix1.getElement(i, m) * matrix2.getElement(m, j);
                     }
-                    matrix3[i][j] = sum;
+                    matrix3.setElement(i, j, sum);
                 }
             }
             System.out.println("Result Matrix is: ");
-            showMatrix(matrix3);
+            matrix3.showMatrix();
         } else {
             System.out.println("Matrix should be consistent. Please try again. Bye!");
         }
