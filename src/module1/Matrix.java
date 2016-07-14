@@ -13,11 +13,11 @@ public class Matrix {
 
     public Matrix() throws Exception {
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        Reader reader = new Reader();
         System.out.print("n = ");
-        this.n = Integer.parseInt(reader.readLine());
+        this.n = Integer.parseInt(reader.getLine());
         System.out.print("m = ");
-        this.m = Integer.parseInt(reader.readLine());
+        this.m = Integer.parseInt(reader.getLine());
 
         this.matrix = new int[n][m];
 
