@@ -20,7 +20,7 @@ public class Matrix {
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                this.matrix[i][j] = (int)(multiplier * Math.random());
+                this.matrix[i][j] = (int) (multiplier * Math.random());
             }
         }
     }
@@ -36,9 +36,9 @@ public class Matrix {
     public void showMatrix() {
 
         System.out.println("The matrix is: ");
-        for (int i = 0; i < this.matrix.length; i++) {
-            for (int j = 0; j < this.matrix[i].length; j++) {
-                System.out.print(this.matrix[i][j]+ " ");
+        for (int[] aMatrix : this.matrix) {
+            for (int anAMatrix : aMatrix) {
+                System.out.print(anAMatrix + " ");
             }
             System.out.println();
         }
