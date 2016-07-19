@@ -1,4 +1,4 @@
-package module1;
+package module1.matrix;
 
 public class Matrix {
 

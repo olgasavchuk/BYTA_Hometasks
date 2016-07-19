@@ -1,4 +1,6 @@
-package module1;
+package module1.matrix;
+
+import module1.matrix.Matrix;
 
 public class TransposeMatrix {
 
