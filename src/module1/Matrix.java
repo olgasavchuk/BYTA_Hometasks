@@ -9,7 +9,6 @@ public class Matrix {
     final static int multiplier = 10;
 
     public Matrix() throws Exception {
-
         Reader reader = new Reader();
         System.out.print("n = ");
         this.n = Integer.parseInt(reader.getLine());
@@ -25,16 +24,17 @@ public class Matrix {
         }
     }
 
-    public Matrix(int n, int m) {
+    public Matrix(int n) {
+        this.matrix = new int[n][n];
+    }
 
+    public Matrix(int n, int m) {
         this.n = n;
         this.m = m;
-
         this.matrix = new int[n][m];
     }
 
     public void showMatrix() {
-
         System.out.println("The matrix is: ");
         for (int[] aMatrix : this.matrix) {
             for (int anAMatrix : aMatrix) {
@@ -44,13 +44,19 @@ public class Matrix {
         }
     }
 
-    public int getElement(int i, int m) {
-
-        return this.matrix[i][m];
+    public int getElement(int i, int j) {
+        return this.matrix[i][j];
     }
 
     public void setElement(int i, int j, int value) {
-
         this.matrix[i][j] = value;
+    }
+
+    public int getN() {
+        return this.matrix.length;
+    }
+
+    public int getM() {
+        return this.matrix[1].length;
     }
 }
