@@ -1,4 +1,4 @@
-package module1.matrix;
+package module1.reader;
 
 import java.io.BufferedReader;
 import java.io.IOException;

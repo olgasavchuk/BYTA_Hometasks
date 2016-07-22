@@ -4,7 +4,7 @@ import module1.matrix.Matrix;
 
 public class TransposeMatrix {
 
-    public static void transposeMatrix(Matrix matrix) {
+    public static Matrix transposeMatrix(Matrix matrix) {
 
         Matrix matrixT = new Matrix(matrix.m, matrix.n);
         for (int j = 0; j < matrixT.n; j++) {
@@ -13,6 +13,7 @@ public class TransposeMatrix {
             }
         }
         matrixT.showMatrix();
+        return matrixT;
     }
 
     public static void main(String[] args) throws Exception {

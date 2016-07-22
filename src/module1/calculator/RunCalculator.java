@@ -1,6 +1,6 @@
 package module1.calculator;
 
-import module1.matrix.Reader;
+import module1.reader.Reader;
 
 import java.io.IOException;
 
