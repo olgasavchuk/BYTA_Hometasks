@@ -26,10 +26,8 @@ public class InverseMatrix {
             }
         } while ((matrix.getN() != matrix.getM()) || (determinant == 0));
 
-        //алгебраическое дополнение матрицы
         cofactor = findCofactorMatrix(matrix);
-        cofactorT = transposeMatrix(cofactor);
-        inverseMatrix = inverseMatrix(n, determinant, cofactorT);
+        inverseMatrix = inverseMatrix(n, determinant, transposeMatrix(cofactor));
         inverseMatrix.showMatrix();
     }
 
@@ -46,7 +44,6 @@ public class InverseMatrix {
 
     private static SquareMatrix inverseMatrix(int n, double determinant, Matrix cofactor) {
         SquareMatrix inverseMatrix = new SquareMatrix(n);
-
         for (int i = 0; i < cofactor.getN(); i++) {
             for (int j = 0; j < cofactor.getN(); j++) {
                 inverseMatrix.setElement(i, j, ((1 / determinant) * cofactor.getElement(i, j)));

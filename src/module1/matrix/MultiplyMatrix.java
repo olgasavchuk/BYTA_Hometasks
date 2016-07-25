@@ -1,7 +1,5 @@
 package module1.matrix;
 
-import module1.matrix.Matrix;
-
 public class MultiplyMatrix {
 
     public static void main(String[] args) throws Exception {

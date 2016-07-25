@@ -12,7 +12,7 @@ public class Matrix {
 
     final static int multiplier = 10;
 
-    public Matrix()  {
+    public Matrix() {
         Reader reader = new Reader();
 
         try {
@@ -73,6 +73,7 @@ public class Matrix {
 
         double determinant = 0;
         int n = this.matrix.length;
+        int l = 0;
 
         if (n > 2) {
             for (int k = 0; k < n; k++) {
@@ -94,7 +95,7 @@ public class Matrix {
                         deleted_rows++;
                     }
                 }
-                determinant += Math.pow(-1, 1 + k) * this.matrix[0][k] * matrixM.determinant();
+                determinant += Math.pow(-1, l + k) * this.matrix[l][k] * matrixM.determinant();
             }
         } else {
             determinant = this.matrix[0][0] * this.matrix[1][1] - this.matrix[0][1] * this.matrix[1][0];
