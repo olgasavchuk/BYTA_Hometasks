@@ -1,6 +1,6 @@
 package module1.matrix;
 
-import static module1.matrix.TransposeMatrix.*;
+import static module1.matrix.MatrixOperations.*;
 
 public class InverseMatrix {
 
@@ -9,13 +9,12 @@ public class InverseMatrix {
         SquareMatrix matrix;
         SquareMatrix inverseMatrix;
         SquareMatrix cofactor;
-        Matrix cofactorT;
         double determinant;
         int n;
 
         do {
             matrix = new SquareMatrix();
-            matrix.showMatrix();
+            matrix.showMatrix("new square");
             determinant = matrix.determinant();
             System.out.println("Determinant is: " + determinant);
             n = matrix.getN();
@@ -28,27 +27,6 @@ public class InverseMatrix {
 
         cofactor = findCofactorMatrix(matrix);
         inverseMatrix = inverseMatrix(n, determinant, transposeMatrix(cofactor));
-        inverseMatrix.showMatrix();
-    }
-
-    private static SquareMatrix findCofactorMatrix(SquareMatrix matrix) {
-        int n = matrix.getN();
-        SquareMatrix cofactorMatrix = new SquareMatrix(n);
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                cofactorMatrix.setElement(i, j, matrix.cofactorOfMatrixElement(i, j));
-            }
-        }
-        return cofactorMatrix;
-    }
-
-    private static SquareMatrix inverseMatrix(int n, double determinant, Matrix cofactor) {
-        SquareMatrix inverseMatrix = new SquareMatrix(n);
-        for (int i = 0; i < cofactor.getN(); i++) {
-            for (int j = 0; j < cofactor.getN(); j++) {
-                inverseMatrix.setElement(i, j, ((1 / determinant) * cofactor.getElement(i, j)));
-            }
-        }
-        return inverseMatrix;
+        inverseMatrix.showMatrix("inverse");
     }
 }

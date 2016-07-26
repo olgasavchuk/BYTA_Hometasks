@@ -43,10 +43,11 @@ public class Matrix {
         this.matrix = new double[n][m];
     }
 
-    public void showMatrix() {
-        System.out.println("The matrix is: ");
+    public void showMatrix(String type) {
+        System.out.println("The " + type + " matrix is: ");
         for (double[] aMatrix : this.matrix) {
             for (double anAMatrix : aMatrix) {
+                anAMatrix = Math.round(1000.0 * anAMatrix) / 1000.0;
                 System.out.print(anAMatrix + " ");
             }
             System.out.println();
