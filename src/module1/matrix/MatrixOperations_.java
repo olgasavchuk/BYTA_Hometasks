@@ -1,6 +1,6 @@
 package module1.matrix;
 
-public class MatrixOperations {
+public class MatrixOperations_ {
 
     public static Matrix multiplyMatrix(Matrix matrix1, Matrix matrix2) {
 
