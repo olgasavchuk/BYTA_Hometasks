@@ -70,9 +70,9 @@ public class Matrix {
         return this.matrix[1].length;
     }
 
-    public double determinant() {
+    public int determinant() {
 
-        double determinant = 0;
+        int determinant = 0;
         int n = this.matrix.length;
         int l = 0;
 
@@ -96,10 +96,10 @@ public class Matrix {
                         deleted_rows++;
                     }
                 }
-                determinant += Math.pow(-1, l + k) * this.matrix[l][k] * matrixM.determinant();
+                determinant += Math.pow(-1, l + k) * (int)this.matrix[l][k] * matrixM.determinant();
             }
         } else {
-            determinant = this.matrix[0][0] * this.matrix[1][1] - this.matrix[0][1] * this.matrix[1][0];
+            determinant = (int)(this.matrix[0][0] * this.matrix[1][1] - this.matrix[0][1] * this.matrix[1][0]);
         }
         return determinant;
     }
