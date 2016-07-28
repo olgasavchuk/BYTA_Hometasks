@@ -44,7 +44,7 @@ public class Matrix {
     }
 
     public void showMatrix(String type) {
-        System.out.println("The " + type + " matrix is: ");
+        System.out.printf("The %s matrix is: \n", type);
         for (double[] aMatrix : this.matrix) {
             for (double anAMatrix : aMatrix) {
                 anAMatrix = Math.round(1000.0 * anAMatrix) / 1000.0;
