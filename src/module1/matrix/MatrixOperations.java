@@ -52,4 +52,16 @@ public class MatrixOperations {
         return inverseMatrix;
     }
 
+    public static Matrix turnMatrix (Matrix matrix) {
+        Matrix temporaryMatrix = transposeMatrix(matrix);
+        Matrix resultMatrix = new Matrix(temporaryMatrix.getN(), temporaryMatrix.getM());
+        int n = temporaryMatrix.getN();
+        int m = temporaryMatrix.getM();
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                resultMatrix.setElement(i, j, temporaryMatrix.getElement(i, m - j - 1));
+            }
+        }
+        return resultMatrix;
+    }
 }
