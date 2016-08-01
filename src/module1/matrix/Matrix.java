@@ -3,6 +3,8 @@ package module1.matrix;
 import module1.reader.Reader;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class Matrix {
 
@@ -52,6 +54,8 @@ public class Matrix {
             }
             System.out.println();
         }
+        // print matrix in line
+        //System.out.println(Arrays.deepToString(this.matrix));
     }
 
     public double getElement(int i, int j) {
