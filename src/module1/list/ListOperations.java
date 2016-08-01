@@ -1,7 +1,5 @@
 package module1.list;
 
-import java.util.ArrayList;
-
 public class ListOperations {
 
     public static void main(String[] args) throws Exception {
@@ -61,7 +59,6 @@ public class ListOperations {
         return result;
     }
 
-    //TODO string -> char -> string hernya
     public static void changeFirstLastLetterInStringOfList(List list) {
         char [] stringArray;
         char s;
@@ -71,7 +68,7 @@ public class ListOperations {
                 s = stringArray[0];
                 stringArray[0] = stringArray[stringArray.length - 1];
                 stringArray[stringArray.length - 1] = s;
-                list.setListElement(i, stringArray.toString());
+                list.setListElement(i, new String(stringArray));
             }
 
         }
