@@ -2,10 +2,6 @@ package module1.matrix;
 
 import module1.reader.Reader;
 
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.Arrays;
-
 public class Matrix {
 
     int n;
@@ -17,14 +13,10 @@ public class Matrix {
     public Matrix() {
         Reader reader = new Reader();
 
-        try {
-            System.out.print("n = ");
-            this.n = Integer.parseInt(reader.getLine());
-            System.out.print("m = ");
-            this.m = Integer.parseInt(reader.getLine());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        System.out.print("n = ");
+        this.n = Integer.parseInt(reader.getLine());
+        System.out.print("m = ");
+        this.m = Integer.parseInt(reader.getLine());
 
         this.matrix = new double[n][m];
 

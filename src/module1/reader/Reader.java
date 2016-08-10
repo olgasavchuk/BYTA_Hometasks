@@ -12,8 +12,14 @@ public class Reader {
         this.reader = new BufferedReader(new InputStreamReader(System.in));
     }
 
-    public String getLine() throws IOException {
-        return this.reader.readLine();
+    public String getLine() {
+        String result = null;
+        try {
+             result = this.reader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
 
