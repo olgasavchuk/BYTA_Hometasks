@@ -2,7 +2,7 @@ package module2.models;
 
 public class Lilia extends Flower {
 
-    int tax = 5;
+    private static final int tax = 5;
 
     public Lilia() {
         this.flowerName = "Lilia";
