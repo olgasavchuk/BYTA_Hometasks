@@ -4,8 +4,8 @@ import module1.reader.Reader;
 
 public class Matrix {
 
-    int n;
-    int m;
+    private int n;
+    private int m;
     double[][] matrix;
 
     final static int multiplier = 10;
