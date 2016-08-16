@@ -20,11 +20,9 @@ public class List {
     }
 
     public void showList() {
-        String wholeList = "";
         for (String aList : this.list) {
-            wholeList = wholeList + aList + "\n";
+            System.out.println(aList);
         }
-        System.out.println(wholeList);
     }
 
     public void showListElement(int i) {
