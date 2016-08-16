@@ -2,7 +2,7 @@ package module2.models;
 
 public class Lilia extends Flower {
 
-    private static final int tax = 5;
+    private static final int TAX = 5;
 
     public Lilia() {
         this.flowerName = "Lilia";
@@ -10,6 +10,6 @@ public class Lilia extends Flower {
     }
 
     public int getPrice() {
-        return this.price + tax;
+        return this.price + TAX;
     }
 }
