@@ -1,11 +1,13 @@
 package module2.models;
 
+import module2.exceptions.EmptyCostException;
 import module2.interfases.Buying;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Bouquet implements Buying{
+public class Bouquet implements Buying {
 
     Map<Flower, Integer> bouquet;
 
@@ -35,7 +37,7 @@ public class Bouquet implements Buying{
         }
     }
 
-    public int getCost() {
+    public int getCost() throws EmptyCostException {
         int bouquetCost = 0;
         for (Map.Entry<Flower, Integer> entry : this.bouquet.entrySet()) {
             bouquetCost += entry.getKey().getPrice() * entry.getValue();
@@ -43,7 +45,7 @@ public class Bouquet implements Buying{
         return bouquetCost;
     }
 
-    public void showBouquet() {
+    public void showBouquet() throws IOException {
         for (Map.Entry<Flower, Integer> entry : this.bouquet.entrySet()) {
             if (entry.getValue() > 0) System.out.println(entry.getKey().getFlowerName() + ": " + entry.getValue());
         }

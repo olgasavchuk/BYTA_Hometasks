@@ -1,5 +1,7 @@
 package module2.interfases;
 
+import module2.exceptions.EmptyCostException;
+
 public interface Buying {
-    int getCost();
+    int getCost() throws EmptyCostException;
 }

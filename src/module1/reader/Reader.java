@@ -3,6 +3,7 @@ package module1.reader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.ConnectException;
 
 public class Reader {
 
@@ -16,6 +17,8 @@ public class Reader {
         String result = null;
         try {
              result = this.reader.readLine();
+        } catch (ConnectException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
