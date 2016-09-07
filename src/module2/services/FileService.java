@@ -7,7 +7,6 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
-import java.util.stream.Stream;
 
 public class FileService {
 
@@ -42,8 +41,7 @@ public class FileService {
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(folderPath + "/" + file));
-            Object[] list = reader.lines().toArray();
-            return list;
+            return reader.lines().toArray();
 
         } catch (IOException e) {
             e.printStackTrace();
