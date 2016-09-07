@@ -15,8 +15,12 @@ public class CreateBouquet {
     public static void main(String[] args) {
 
         Bouquet bouquet = null;
+        FileService file = null;
+        Report report = new Report();
+
         try {
             bouquet = new Bouquet();
+            file = new FileService();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -30,6 +34,7 @@ public class CreateBouquet {
                     "2 - Lilia\n" +
                     "Please choose any:");
             try {
+                if (bouquet == null) throw new NullPointerException();
                 switch (Integer.parseInt(reader.getLine())) {
                     case 1:
                         bouquet.addFlower("Rose");
@@ -45,6 +50,9 @@ public class CreateBouquet {
                 e.printStackTrace();
             } catch (NumberFormatException e) {
                 out.println("Input is empty. Try again");
+                e.printStackTrace();
+            } catch (NullPointerException e) {
+                out.print("Bouquet is empty");
                 e.printStackTrace();
             }
             out.println("Do you want to buy more? y/n");
@@ -67,16 +75,27 @@ public class CreateBouquet {
             }
 
         } while (exit == 0);
+
         try {
-            if (bouquet.getCost() <= 0) throw new EmptyCostException ("Cost is empty");
+            if (bouquet == null) throw new NullPointerException();
+            if (bouquet.getCost() == 0) throw new EmptyCostException ("Cost is empty");
             out.println("Bouquet Cost is: " + bouquet.getCost());
         } catch (EmptyCostException e) {
             e.printStackTrace();
-        }
-        try {
-            bouquet.showBouquet();
-        } catch (IOException e) {
+        } catch (NullPointerException e) {
+            out.print("Bouquet is empty");
             e.printStackTrace();
+        }
+
+        try {
+            if ((bouquet == null) || (file == null)) throw new NullPointerException();
+            bouquet.showBouquet();
+            file.writeToFile(bouquet);
+            System.out.println("TOTAL FOR ALL BOUQUETS: " + report.getReport(file.getFilesList()));
+
+        } catch (NullPointerException | IOException e) {
+            e.printStackTrace();
+            out.println("Something went wrong");
         }
     }
 }
