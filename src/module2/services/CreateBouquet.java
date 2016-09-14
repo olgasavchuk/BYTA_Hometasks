@@ -6,6 +6,7 @@ import module2.exceptions.NonexistentFlowerException;
 import module2.exceptions.WrongAnswerException;
 import module2.models.Bouquet;
 
+import java.io.File;
 import java.io.IOException;
 
 import static java.lang.System.*;
@@ -15,17 +16,18 @@ public class CreateBouquet {
     public static void main(String[] args) {
 
         Bouquet bouquet = null;
-        FileService file = null;
         Report report = new Report();
+        String customer_name;
 
         try {
             bouquet = new Bouquet();
-            file = new FileService();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         Reader reader = new Reader();
+        out.println("Enter your name: ");
+        customer_name = reader.getLine();
 
         int exit = 0;
         do {
@@ -73,7 +75,6 @@ public class CreateBouquet {
                 out.println("Input is empty. Try again");
                 e.printStackTrace();
             }
-
         } while (exit == 0);
 
         try {
@@ -88,11 +89,14 @@ public class CreateBouquet {
         }
 
         try {
-            if ((bouquet == null) || (file == null)) throw new NullPointerException();
+            if (bouquet == null) throw new NullPointerException();
             bouquet.showBouquet();
-            file.writeToFile(bouquet);
-            System.out.println("TOTAL FOR ALL BOUQUETS: " + report.getReport(file.getFilesList()));
 
+            FileService file = new FileService();
+            file.writeToFile(bouquet);
+
+            (new DBService()).writeBouquet(bouquet, customer_name);
+            System.out.println("TOTAL FOR ALL BOUQUETS: " + report.getReport(file.getFilesList()));
         } catch (NullPointerException | IOException e) {
             e.printStackTrace();
             out.println("Something went wrong");

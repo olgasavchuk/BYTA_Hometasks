@@ -10,11 +10,9 @@ import java.util.Map;
 public class Bouquet implements Buying {
 
     protected Map<Flower, Integer> flowers;
-    private int bouquetCost;
 
     public Bouquet() {
         this.flowers = new HashMap<>();
-        this.bouquetCost = 0;
     }
 
     public Map<Flower, Integer> getFlowers() {
@@ -43,12 +41,20 @@ public class Bouquet implements Buying {
         }
     }
 
-    public int getCost() throws EmptyCostException {
-
-        for (Map.Entry<Flower, Integer> entry : this.flowers.entrySet()) {
-            this.bouquetCost += entry.getKey().getPrice() * entry.getValue();
+    public int getCost() {
+        int bouquetCost = 0;
+        try {
+            for (Map.Entry<Flower, Integer> entry : this.flowers.entrySet()) {
+                bouquetCost += entry.getKey().getPrice() * entry.getValue();
+            }
+            if (bouquetCost == 0) {
+                throw new EmptyCostException("Cost is empty");
+            }
+        } catch (EmptyCostException e) {
+            e.printStackTrace();
         }
-        return this.bouquetCost;
+
+        return bouquetCost;
     }
 
     public void showBouquet() throws IOException {
