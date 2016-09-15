@@ -10,5 +10,6 @@
 hs_err_pid*
 
 /.idea
-/src/module2/bouquets
-#!/src/module2/bouquets/.gitkeep
+
+/src/module2/results/txt/
+/src/module2/results/xml/
