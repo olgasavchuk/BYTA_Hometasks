@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class FileService {
 
-    public final static String folderPath = "src/module2/results/txt";
+    public final static String folderPath = "src/module2/resultsTXT";
     private File file;
     private File dir;
 

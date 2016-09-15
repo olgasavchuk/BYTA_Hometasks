@@ -23,7 +23,7 @@ public class XMLService {
 
     protected Document document;
 
-    public final static String folderPath = "src/module2/results/xml";
+    public final static String folderPath = "src/module2/resultsXML";
     private File file;
 
     public XMLService() {
