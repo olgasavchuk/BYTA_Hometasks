@@ -11,5 +11,5 @@ hs_err_pid*
 
 /.idea
 
-/src/module2/results/txt/
-/src/module2/results/xml/
+/src/module2/results/txt
+/src/module2/results/xml

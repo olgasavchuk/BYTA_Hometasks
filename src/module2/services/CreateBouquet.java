@@ -15,7 +15,6 @@ public class CreateBouquet {
     public static void main(String[] args) {
 
         Bouquet bouquet = null;
-        Report report = new Report();
         String customer_name;
         Reader reader = new Reader();
 
@@ -73,6 +72,12 @@ public class CreateBouquet {
             }
         } while (exit == 0);
 
+        getBouquetcost(bouquet);
+
+        serviceOperations(bouquet, customer_name);
+    }
+
+    private static void getBouquetcost(Bouquet bouquet) {
         try {
             if (bouquet == null) throw new NullPointerException();
             if (bouquet.getCost() == 0) throw new EmptyCostException ("Cost is empty");
@@ -83,6 +88,11 @@ public class CreateBouquet {
             out.print("Bouquet is empty");
             e.printStackTrace();
         }
+    }
+
+    private static void serviceOperations(Bouquet bouquet, String customer_name) {
+
+        Report report = new Report();
 
         try {
             if (bouquet == null) throw new NullPointerException();
