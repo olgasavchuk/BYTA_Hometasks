@@ -106,19 +106,19 @@ public class CreateBouquet {
             FileService file = new FileService();
             file.writeToSource(bouquet);
             System.out.println("TOTAL FOR ALL BOUQUETS: " + report.getReport(file.getFilesList()));
-            System.out.println("\nRead from .txt");
+            System.out.println("\n----------- Read from .txt ----------");
             file.readFromSource();
 
             (new DBService()).writeToSource(bouquet, customerName);
 
             XMLService xmlService = new XMLService();
             xmlService.writeToSource(bouquet, bouquet.getPrice());
-            System.out.println("\nRead from .xml");
+            System.out.println("\n---------- Read from .xml ----------");
             xmlService.readFromSource();
 
             JSONService jSONService = new JSONService();
             jSONService.writeToSource(bouquet);
-            System.out.println("\nRead from .json");
+            System.out.println("\n---------- Read from .json ----------");
             jSONService.readFromSource();
 
         } catch (NullPointerException | IOException e) {
