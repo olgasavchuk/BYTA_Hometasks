@@ -1,14 +1,33 @@
 package module2.services;
 
+import module2.interfases.WritableReadable;
 import module2.models.Bouquet;
 import module2.models.Flower;
 
 import java.sql.*;
 import java.util.Map;
+import java.util.Objects;
 
-public class DBService {
+public class DBService implements WritableReadable{
 
     private Connection connect = null;
+
+    public void writeToSource(Bouquet bouquet, Object... arguments) {
+
+        String customerName = arguments[0].toString();
+        try {
+            openConnection();
+            addBouquet(bouquet, customerName);
+            closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void readFromSource() {
+
+    }
 
     private void openConnection() throws SQLException {
 
@@ -46,19 +65,9 @@ public class DBService {
         return id;
     }
 
-    public void writeBouquet(Bouquet bouquet, String customer_name) {
-        try {
-            openConnection();
-            addBouquet(bouquet, customer_name);
-            closeConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     private void addBouquet(Bouquet bouquet, String customerName) {
         try {
-            int bouquetCost = bouquet.getCost();
+            int bouquetCost = bouquet.getPrice();
             PreparedStatement preparedStatement = connect.prepareStatement("insert into bouquets values (null, ?, ?)");
             preparedStatement.setString(1, customerName);
             preparedStatement.setInt(2, bouquetCost);

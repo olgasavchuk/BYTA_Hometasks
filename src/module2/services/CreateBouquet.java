@@ -4,11 +4,10 @@ import module1.reader.Reader;
 import module2.exceptions.EmptyCostException;
 import module2.exceptions.NonexistentFlowerException;
 import module2.exceptions.WrongAnswerException;
+import module2.interfases.Buying;
 import module2.models.Bouquet;
 
 import java.io.IOException;
-
-import static java.lang.System.*;
 
 public class CreateBouquet {
 
@@ -17,6 +16,7 @@ public class CreateBouquet {
         Bouquet bouquet = null;
         String customer_name;
         Reader reader = new Reader();
+        StringBuilder sb = new StringBuilder();
 
         try {
             bouquet = new Bouquet();
@@ -24,12 +24,17 @@ public class CreateBouquet {
             e.printStackTrace();
         }
 
-        out.print("Enter your name: ");
+        System.out.print("Enter your name: ");
         customer_name = reader.getLine();
+
+        sb.append("\nChoose any flower:\n")
+                .append("Rose - put 1\n")
+                .append("Lilia - put 2\n")
+                .append("Your choice: ");
 
         int exit = 0;
         do {
-            out.print("\nChoose any flower:\n" + "Rose - put 1\n" + "Lilia - put 2\n" + "Your choice: ");
+            System.out.print(sb.toString());
             try {
                 if (bouquet == null) throw new NullPointerException();
                 switch (Integer.parseInt(reader.getLine())) {
@@ -43,16 +48,16 @@ public class CreateBouquet {
                         throw new NonexistentFlowerException("We don't have such flower");
                 }
             } catch (NonexistentFlowerException e) {
-                out.println("Invalid input. Try again");
+                System.out.println("Invalid input. Try again");
                 e.printStackTrace();
             } catch (NumberFormatException e) {
-                out.println("Input is empty. Try again");
+                System.out.println("Input is empty. Try again");
                 e.printStackTrace();
             } catch (NullPointerException e) {
-                out.print("Bouquet is empty");
+                System.out.print("Bouquet is empty");
                 e.printStackTrace();
             }
-            out.print("Do you want more? y/n: ");
+            System.out.print("Do you want more? y/n: ");
             try {
                 switch (reader.getLine()) {
                     case "y":
@@ -64,33 +69,33 @@ public class CreateBouquet {
                         throw new WrongAnswerException();
                 }
             } catch (WrongAnswerException e) {
-                out.println("Let it be yes :)");
+                System.out.println("Let it be yes :)");
                 e.printStackTrace();
             } catch (NumberFormatException e) {
-                out.println("Input is empty. Try again");
+                System.out.println("Input is empty. Try again");
                 e.printStackTrace();
             }
         } while (exit == 0);
 
-        getBouquetcost(bouquet);
+        getBouquetCost(bouquet);
 
         serviceOperations(bouquet, customer_name);
     }
 
-    private static void getBouquetcost(Bouquet bouquet) {
+    private static void getBouquetCost(Buying bouquet) {
         try {
             if (bouquet == null) throw new NullPointerException();
-            if (bouquet.getCost() == 0) throw new EmptyCostException ("Cost is empty");
-            out.println("\nBouquet Cost is: " + bouquet.getCost());
+            if (bouquet.getPrice() == 0) throw new EmptyCostException ("Cost is empty");
+            System.out.println("\nBouquet Cost is: " + bouquet.getPrice());
         } catch (EmptyCostException e) {
             e.printStackTrace();
         } catch (NullPointerException e) {
-            out.print("Bouquet is empty");
+            System.out.print("Bouquet is empty");
             e.printStackTrace();
         }
     }
 
-    private static void serviceOperations(Bouquet bouquet, String customer_name) {
+    private static void serviceOperations(Bouquet bouquet, String customerName) {
 
         Report report = new Report();
 
@@ -99,17 +104,26 @@ public class CreateBouquet {
             bouquet.showBouquet();
 
             FileService file = new FileService();
-            file.writeToFile(bouquet);
-            out.println("TOTAL FOR ALL BOUQUETS: " + report.getReport(file.getFilesList()));
+            file.writeToSource(bouquet);
+            System.out.println("TOTAL FOR ALL BOUQUETS: " + report.getReport(file.getFilesList()));
+            System.out.println("\nRead from .txt");
+            file.readFromSource();
 
-            (new DBService()).writeBouquet(bouquet, customer_name);
+            (new DBService()).writeToSource(bouquet, customerName);
 
             XMLService xmlService = new XMLService();
-            xmlService.writeToDocument(bouquet, bouquet.getCost());
+            xmlService.writeToSource(bouquet, bouquet.getPrice());
+            System.out.println("\nRead from .xml");
+            xmlService.readFromSource();
+
+            JSONService jSONService = new JSONService();
+            jSONService.writeToSource(bouquet);
+            System.out.println("\nRead from .json");
+            jSONService.readFromSource();
 
         } catch (NullPointerException | IOException e) {
             e.printStackTrace();
-            out.println("Something went wrong");
+            System.out.println("Something went wrong");
         }
     }
 }

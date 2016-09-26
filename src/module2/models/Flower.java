@@ -1,6 +1,8 @@
 package module2.models;
 
-public abstract class Flower{
+import module2.interfases.Buying;
+
+public abstract class Flower implements Buying {
 
     protected String flowerName;
     protected int price = 0;

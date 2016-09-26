@@ -9,7 +9,7 @@ public class Report {
 
     public int getReport(String[] fileList) {
         for (String filePath : fileList) {
-            Object[] content = FileService.readFromFile(filePath);
+            Object[] content = FileService.getFileContent(filePath);
 
             for (Object lineObject : content) {
                 String line = lineObject.toString();

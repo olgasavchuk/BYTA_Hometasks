@@ -41,7 +41,7 @@ public class Bouquet implements Buying {
         }
     }
 
-    public int getCost() {
+    public int getPrice() {
         int bouquetCost = 0;
         try {
             for (Map.Entry<Flower, Integer> entry : this.flowers.entrySet()) {
@@ -53,7 +53,6 @@ public class Bouquet implements Buying {
         } catch (EmptyCostException e) {
             e.printStackTrace();
         }
-
         return bouquetCost;
     }
 

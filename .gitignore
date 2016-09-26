@@ -11,5 +11,7 @@ hs_err_pid*
 
 /.idea
 
-/src/module2/resultsTXT
-/src/module2/resultsXML
+/src/module2/resultsTXT/
+/src/module2/resultsXML/
+/src/module2/gson-2.6.2.jar
+/src/module2/resultsJSON/
