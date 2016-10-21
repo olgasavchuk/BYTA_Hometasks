@@ -10,79 +10,70 @@ public class Lists {
         List<Integer> arrayList = new ArrayList<>();
         List<Integer> linkedList = new LinkedList<>();
 
-        System.out.println("--- Adding to the beginning of the list ---");
-        addTiming("beginning", "ArrayList", arrayList);
-        addTiming("beginning", "LinkedList", linkedList);
+        System.out.println("\n--- Adding to the beginning of the list ---");
+        timing(arrayList, "addToBeginning", "ArrayList");
+        timing(linkedList, "addToBeginning", "LinkedList");
 
         System.out.println("\n--- Adding to the end of the list ---");
-        addTiming("end", "LinkedList", arrayList);
-        addTiming("end", "ArrayList", linkedList);
+        timing(arrayList, "addToEnd", "ArrayList");
+        timing(linkedList, "addToEnd", "LinkedList");
 
         System.out.println("\n--- Removing from the beginning of the list ---");
-        removeTiming("beginning", "ArrayList", arrayList);
-        removeTiming("beginning", "LinkedList", linkedList);
+        timing(arrayList, "removeFromList", "ArrayList");
+        timing(linkedList, "removeFromList", "LinkedList");
 
         System.out.println("\n--- Removing from the end of the list ---");
-        removeTiming("end", "ArrayList", arrayList);
-        removeTiming("end", "LinkedList", linkedList);
+        timing(arrayList, "removeFromEnd", "ArrayList");
+        timing(linkedList, "removeFromEnd", "LinkedList");
 
         System.out.println("\n--- Searching element ---");
-        searchingTiming("ArrayList", arrayList);
-        searchingTiming("LinkedList", linkedList);
+        timing(arrayList, "search", "ArrayList");
+        timing(linkedList, "search", "LinkedList");
     }
 
-    private static void removeTiming(String place, String listType, List<Integer> list) {
-        long startTime = 0;
-        long endTime = 0;
-
-        switch (place) {
-            case "beginning":
-                startTime = System.currentTimeMillis();
-                list.remove(0);
-                endTime = System.currentTimeMillis();
-                break;
-            case "end":
-                startTime = System.currentTimeMillis();
-                list.remove(list.size() - 1);
-                endTime = System.currentTimeMillis();
-                break;
-        }
-        System.out.println("Timing for " + listType + " is " + (endTime - startTime) + " ms");
-    }
-
-    private static void searchingTiming(String listType, List<Integer> list) {
+    public static void timing(List<Integer> list, String operation, String listType) {
         long startTime;
         long endTime;
-
         startTime = System.currentTimeMillis();
-        for (int i = 0; i < 1E5; i++) {
-            if (list.get(i) == 9999) break;
+        switch (operation) {
+            case "addToEnd":
+                addToList(list, null);
+                break;
+            case "addToBeginning":
+                addToList(list, 0);
+                break;
+            case "removeFromList":
+                removeFromList(list, 0);
+                break;
+            case "removeFromEnd":
+                removeFromList(list, list.size() - 1);
+                break;
+            case "search":
+                searchElement(list, 9999);
+                break;
         }
         endTime = System.currentTimeMillis();
-        System.out.println("Timing for " + listType + " is " + (endTime - startTime) + " ms");
-
+        System.out.println(listType + ": " + (endTime - startTime) + " ms");
     }
 
-    public static void addTiming(String place, String listType, List<Integer> list) {
-        long startTime = 0;
-        long endTime = 0;
+    private static void removeFromList(List<Integer> list, int index) {
+        list.remove(index);
+    }
 
-        switch (place) {
-            case "beginning":
-                startTime = System.currentTimeMillis();
-                for (int i = 0; i < 1E5; i++) {
-                    list.add(0, i);
-                }
-                endTime = System.currentTimeMillis();
-                break;
-            case "end":
-                startTime = System.currentTimeMillis();
-                for (int i = 0; i < 1E5; i++) {
-                    list.add(i);
-                }
-                endTime = System.currentTimeMillis();
-                break;
+    public static void addToList (List<Integer> list, Integer index) {
+        for (int i = 0; i < 1E5; i++) {
+            if (index == null) {
+                list.add(i);
+            } else {
+                list.add(index, i);
+            }
         }
-        System.out.println("Timing for " + listType + " is " + (endTime - startTime) + " ms");
+    }
+
+    private static boolean searchElement(List<Integer> list, Integer value) {
+        for (int i = 0; i < 1E5; i++) {
+            if (list.get(i) == value) return true;
+        }
+        return false;
     }
 }
