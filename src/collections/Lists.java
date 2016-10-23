@@ -34,7 +34,8 @@ public class Lists {
     public static void timing(List<Integer> list, String operation, String listType) {
         long startTime;
         long endTime;
-        startTime = System.currentTimeMillis();
+        //startTime = System.currentTimeMillis();
+        startTime = System.nanoTime();
         switch (operation) {
             case "addToEnd":
                 addToList(list, null);
@@ -52,8 +53,9 @@ public class Lists {
                 searchElement(list, 9999);
                 break;
         }
-        endTime = System.currentTimeMillis();
-        System.out.println(listType + ": " + (endTime - startTime) + " ms");
+        //endTime = System.currentTimeMillis();
+        endTime = System.nanoTime();
+        System.out.println(listType + ": " + (endTime - startTime));
     }
 
     private static void removeFromList(List<Integer> list, int index) {
