@@ -16,7 +16,7 @@ public class Reader {
     public String getLine() {
         String result = null;
         try {
-             result = this.reader.readLine();
+             result = this.reader.readLine().trim();
         } catch (ConnectException e) {
             e.printStackTrace();
         } catch (IOException e) {

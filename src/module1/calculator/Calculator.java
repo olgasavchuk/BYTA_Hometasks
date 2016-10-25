@@ -12,10 +12,6 @@ public class Calculator {
         return result;
     }
 
-    public void setResult(int result) {
-        this.result = 0;
-    }
-
     public void summarize(int number){
         this.result += number;
     }

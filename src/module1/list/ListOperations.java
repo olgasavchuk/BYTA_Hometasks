@@ -5,35 +5,32 @@ public class ListOperations {
     public static void main(String[] args) throws Exception {
         List list = new List();
 
-        System.out.println("Change by places first and last letters in each second string of list ");
+        System.out.println("\nChange by places first and last letters in each second string of list ");
         changeFirstLastLetterInStringOfList(list);
         list.showList();
 
-        System.out.println("Sort list by string length:");
+        System.out.println("\nSort list by string length:");
         list.sortByStringLength();
         list.showList();
 
-        System.out.println("Find the second by length string in a list:");
+        System.out.println("\nFind the second by length string in a list:");
         System.out.println(secondByLengthStringOfList(list));
-        System.out.println();
 
-        System.out.println("Revert strings of list: ");
+        System.out.println("\nRevert strings of list: ");
         list.revertStringsOfList();
         list.showList();
 
-        System.out.println("Sort list by count of vowels in string");
+        System.out.println("\nSort list by count of vowels in string");
         sortByNumberOfLetters(list, "vowel");
         list.showList();
 
-        System.out.println("Sort list by count of consonants in string");
+        System.out.println("\nSort list by count of consonants in string");
         sortByNumberOfLetters(list, "consonant");
         list.showList();
-
     }
 
     public static void sortByNumberOfLetters(List list, String letter) {
         String s;
-        int k,l;
         for (int i = 0; i < list.getListSize(); i++) {
             for (int j = 0; j < list.getListSize() - i - 1; j++) {
                 if (list.countOfLettersInStringOfList(j, letter) > list.countOfLettersInStringOfList(j + 1, letter)) {

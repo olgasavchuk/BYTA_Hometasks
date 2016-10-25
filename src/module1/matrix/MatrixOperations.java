@@ -19,7 +19,6 @@ public class MatrixOperations {
         return resultMatrix;
     }
 
-
     public static Matrix transposeMatrix(Matrix matrix) {
 
         Matrix resultMatrix = new Matrix(matrix.getM(), matrix.getN());
@@ -52,7 +51,7 @@ public class MatrixOperations {
         return inverseMatrix;
     }
 
-    public static Matrix turnMatrix (Matrix matrix) {
+    public static Matrix turn90Matrix(Matrix matrix) {
         Matrix temporaryMatrix = transposeMatrix(matrix);
         Matrix resultMatrix = new Matrix(temporaryMatrix.getN(), temporaryMatrix.getM());
         int n = temporaryMatrix.getN();

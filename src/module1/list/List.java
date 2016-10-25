@@ -10,7 +10,7 @@ public class List {
     public List() throws Exception{
         Reader reader = new Reader();
         String value;
-        System.out.println("Enter values. to finish enter \"fun\" ");
+        System.out.println("Enter values. to finish enter \"fun\":");
         do {
             value = reader.getLine();
             if (!value.equals("fun")) {
@@ -23,10 +23,6 @@ public class List {
         for (String aList : this.list) {
             System.out.println(aList);
         }
-    }
-
-    public void showListElement(int i) {
-        System.out.println(this.list.get(i));
     }
 
     public int getListSize() {
@@ -54,12 +50,6 @@ public class List {
             value = new StringBuffer(this.list.get(i));
             this.list.set(i, value.reverse().toString());
         }
-    }
-
-    public String[] convertToArray() {
-        String[] array = new String[this.list.size()];
-        this.list.toArray(array);
-        return array;
     }
 
     public int countOfLettersInStringOfList(int k, String letterType) {
