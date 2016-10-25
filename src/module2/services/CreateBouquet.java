@@ -109,7 +109,7 @@ public class CreateBouquet {
             System.out.println("\n----------- Read from .txt ----------");
             file.readFromSource();
 
-           // (new DBService()).writeToSource(bouquet, customerName);
+            (new DBService()).writeToSource(bouquet, customerName);
 
             XMLService xmlService = new XMLService();
             xmlService.writeToSource(bouquet, bouquet.getPrice());
